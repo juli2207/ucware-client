@@ -1,0 +1,81 @@
+; ----------------------------------------------------------------
+; This is a opsi-script file.
+; See https://opsi.org    https://uib.de
+; This code was originally created by opsi-setup-detector 4.3.1.4
+; ----------------------------------------------------------------
+encoding=utf8
+
+
+
+; -------------------------------------
+; include file for opsi-setup-detector products
+; Define all sections here
+;---------------------------
+
+;--- generated setup sections
+
+[Winbatch_install_1]
+msiexec /i "$installerSourceDir$\ucware-client-6.1.1.msi" /l* "%opsiLogDir%\$ProductId$.install_log.txt" /qb-! ALLUSERS=1 REBOOT=ReallySuppress
+
+[Winbatch_install_2]
+
+
+;--- generated uninstall sections
+
+[Winbatch_uninstall_1]
+msiexec /x $MsiId$ /qb-! REBOOT=ReallySuppress
+
+[Winbatch_uninstall_2]
+
+
+
+[Files_uninstall]
+del -sf "$InstallDir$\"
+
+
+;--- addtional sections
+
+
+[Sub_Uninstallation_msi]
+set $MsiVersion$ = TakeString(0, splitstring('%uninstallEntry%', "="))
+set $MsiId$ = TakeString(1, splitstring('%uninstallEntry%', "="))
+
+if stringtobool(checkForMsiDisplayname($MsiId$,$displayname$))
+	Message "Uninstalling: "  + $displayname$ + " " + $MsiVersion$+ "..."
+	Winbatch_Uninstall_1
+	Set $ExitCode$ = getlastexitcode
+	if stringtobool(isMsiExitcodeFatal($ExitCode$, "true", $ErrorString$ ))
+		includelog "%opsiLogDir%\"+$ProductId$+".install_log.txt" "50" "utf16le"
+		
+		LogError $ErrorString$
+		isfatalerror $ErrorString$
+	else
+		Comment $ErrorString$
+	endif
+else
+	Comment "No previously installed " + $ProductId$ + " version found"
+endif
+
+
+[Linkfolder_remove_desktop_icon]
+; check delete_element
+set_basefolder common_desktopdirectory
+set_subfolder ""
+delete_element $productId$
+
+[Linkfolder_create_desktop_icon]
+; check name, target and working_dir
+set_basefolder common_desktopdirectory
+set_subfolder ""
+set_link
+	name: $productId$
+	target: $Installdir$\$targetprogram$
+	parameters:
+	working_dir: $Installdir$
+	icon_file:
+	icon_index:
+end_link
+
+
+; ----------------------------------------------------------------
+; ----------------------------------------------------------------
