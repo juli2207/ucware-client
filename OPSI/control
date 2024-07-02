@@ -1,5 +1,5 @@
 [Package]
-version: 1
+version: 1.corr1corr
 depends: 
 
 [Product]
@@ -19,9 +19,3 @@ alwaysScript:
 onceScript: 
 customScript: 
 userLoginScript: 
-
-[ProductProperty]
-type: bool
-name: desktopicon
-description: Soll es ein Desktopicon geben ?
-default: False
