@@ -15,7 +15,7 @@ encoding=utf8
 ;--- generated setup sections
 
 [Winbatch_install_1]
-msiexec /i "$installerSourceDir$\ucware-client-6.1.1.msi" /l* "%opsiLogDir%\$ProductId$.install_log.txt" /qb-! ALLUSERS=1 REBOOT=ReallySuppress
+msiexec /i "$installerSourceDir$\ucware-client-6.2.2.msi" /l* "%opsiLogDir%\$ProductId$.install_log.txt" /qb-! ALLUSERS=1 REBOOT=ReallySuppress
 
 [Winbatch_install_2]
 
