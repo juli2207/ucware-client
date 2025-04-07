@@ -1,5 +1,5 @@
 [Package]
-version: 2
+version: 3
 depends: 
 
 [Product]
@@ -8,7 +8,7 @@ id: ucware-client
 name: UCware CTI-Client
 description: 
 advice: 
-version: 6.2.2
+version: 6.3.0
 priority: 0
 licenseRequired: False
 productClasses: 

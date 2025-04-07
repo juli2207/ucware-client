@@ -1,0 +1,21 @@
+[Package]
+version: 2
+depends: 
+
+[Product]
+type: localboot
+id: ucware-client
+name: UCware CTI-Client
+description: 
+advice: 
+version: 6.2.2
+priority: 0
+licenseRequired: False
+productClasses: 
+setupScript: setup.opsiscript
+uninstallScript: uninstall.opsiscript
+updateScript: 
+alwaysScript: 
+onceScript: 
+customScript: 
+userLoginScript: 
